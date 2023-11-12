@@ -11,11 +11,19 @@ pub fn lexer(wat: &str, callback: &js_sys::Function) {
                 let kind = js_sys::JsString::from(format!("{:?}", token.kind));
                 let offset = js_sys::Number::from(token.offset as u32);
                 let len = js_sys::Number::from(token.len);
-                let _ = callback.call3(&JsValue::NULL, &kind, &offset, &len);
+                let token_text = wat
+                    .get(token.offset..token.offset + token.len as usize)
+                    .unwrap();
+                let text = js_sys::JsString::from(token_text);
+                let _ = callback.apply(
+                    &JsValue::NULL,
+                    &js_sys::Array::of4(&kind, &offset, &len, &text),
+                );
             }
             Err(err) => {
                 let err = js_sys::Error::new(&err.to_string());
                 let _ = callback.call1(&JsValue::NULL, &err);
+                return;
             }
         }
     }

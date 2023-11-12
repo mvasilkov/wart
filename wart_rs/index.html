@@ -9,8 +9,13 @@
       import init, { lexer } from './pkg/wart_rs.js'
 
       init().then(() => {
-        lexer('(module (func))', (kind, offset, len) => {
-          console.log(kind, offset, len)
+        lexer('(module (func))', (kind, offset, len, text) => {
+          // offset and len are in bytes
+          if (kind instanceof Error) {
+            console.error(kind)
+            return
+          }
+          console.log('%o %o %o %o', kind, offset, len, text)
         })
       })
     </script>
