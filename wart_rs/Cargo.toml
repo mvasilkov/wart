@@ -1,0 +1,21 @@
+[package]
+name = "wart_rs"
+version = "0.0.1"
+authors = ["Mark Vasilkov (https://github.com/mvasilkov)"]
+description = "WebAssembly Text Format (WAT) parser from the wast crate, compiled to WebAssembly for use in JavaScript."
+license = "MIT"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+lto = true
+opt-level = "s"
+
+[dependencies]
+js-sys = "0.3.65"
+wasm-bindgen = "0.2.88"
+wast = "67.0.1"
