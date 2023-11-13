@@ -4,7 +4,8 @@ use wast::lexer::Lexer;
 
 #[wasm_bindgen]
 pub fn lexer(wat: &str, callback: &js_sys::Function) {
-    let lexer = Lexer::new(&wat);
+    let mut lexer = Lexer::new(&wat);
+    lexer.allow_confusing_unicode(true);
     for token_result in lexer.iter(0) {
         match token_result {
             Ok(token) => {

@@ -14,10 +14,8 @@ import init, { lexer } from './node_modules/wart_rs/wart_rs.js'
 await init()
 
 lexer('(module (func))', (kind, offset, len, text) => {
-    if (kind instanceof Error) {
-        console.error(kind)
-        return
-    }
+    if (kind instanceof Error)
+        return console.error(kind)
     // offset and len are in bytes
     console.log('%o %o %o %o', kind, offset, len, text)
 })
@@ -29,18 +27,37 @@ Works in [Bun][bun]!
 
 ```js
 import { readFile } from 'node:fs/promises'
-import init, { lexer } from './node_modules/wart_rs/wart_rs.js'
+import init, { lexer } from 'wart_rs/wart_rs.js'
 
-await init(readFile(new URL('./node_modules/wart_rs/wart_rs_bg.wasm', import.meta.url)))
+const wasm = new URL(import.meta.resolve('wart_rs/wart_rs_bg.wasm'))
+await init(readFile(wasm))
 
 lexer('(module (func))', (kind, offset, len, text) => {
-    if (kind instanceof Error) {
-        console.error(kind)
-        return
-    }
+    if (kind instanceof Error)
+        return console.error(kind)
     // offset and len are in bytes
     console.log('%o %o %o %o', kind, offset, len, text)
 })
 ```
 
 [bun]: https://bun.sh/
+
+## Backend usage (CommonJS modules)
+
+Since 2009.
+
+```js
+const { readFile } = require('node:fs/promises')
+
+import('wart_rs/wart_rs.js').then(async ({ default: init, lexer }) => {
+    const wasm = require.resolve('wart_rs/wart_rs_bg.wasm')
+    await init(readFile(wasm))
+
+    lexer('(module (func))', (kind, offset, len, text) => {
+        if (kind instanceof Error)
+            return console.error(kind)
+        // offset and len are in bytes
+        console.log('%o %o %o %o', kind, offset, len, text)
+    })
+})
+```

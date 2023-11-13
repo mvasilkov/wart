@@ -6,15 +6,14 @@
   </head>
   <body>
     <script type="module">
-      import init, { lexer } from './pkg/wart_rs.js'
+      import init, { lexer } from '../pkg/wart_rs.js'
 
       await init()
 
       lexer('(module (func))', (kind, offset, len, text) => {
-        if (kind instanceof Error) {
-          console.error(kind)
-          return
-        }
+        if (kind instanceof Error)
+          return console.error(kind)
+
         // offset and len are in bytes
         console.log('%o %o %o %o', kind, offset, len, text)
       })
