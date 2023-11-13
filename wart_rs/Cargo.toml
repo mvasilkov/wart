@@ -2,7 +2,8 @@
 name = "wart_rs"
 version = "0.0.1"
 authors = ["Mark Vasilkov (https://github.com/mvasilkov)"]
-description = "WebAssembly Text Format (WAT) parser from the wast crate, compiled to WebAssembly for use in JavaScript."
+description = "WebAssembly Text Format (WAT) lexer from the wast crate, compiled to WebAssembly for use in JavaScript."
+repository = "https://github.com/mvasilkov/wart"
 license = "MIT"
 edition = "2021"
 
