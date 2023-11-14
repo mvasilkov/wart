@@ -1,7 +1,11 @@
+pkg_set := type='module' main='wart_rs.js' \
+keywords[]='webassembly' keywords[]='wasm' keywords[]='wat' \
+keywords[]='wast' keywords[]='lexer' keywords[]='parser'
+
 .PHONY: package
 package:
 	wasm-pack build --release --target web
-	cd pkg && npm pkg set type='module' && npm pkg set main='wart_rs.js'
+	cd pkg && npm pkg set $(pkg_set)
 
 .PHONY: clean
 clean:

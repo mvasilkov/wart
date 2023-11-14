@@ -1,7 +1,8 @@
 # wart_rs
 
-WebAssembly Text Format (WAT) lexer from the [wast][wast] crate, compiled to WebAssembly for use in JavaScript.
+[WebAssembly Text Format][wat] (WAT) lexer from the [wast][wast] crate, compiled to WebAssembly for use in JavaScript.
 
+[wat]: https://webassembly.github.io/spec/core/text/lexical.html
 [wast]: https://crates.io/crates/wast
 
 ## Frontend usage
@@ -72,8 +73,8 @@ The lexer yields tokens of the following types:
 - **LParen**
 - **RParen**
 - **String**
-- **Id** (start with `$`)
+- **Id** (start with $)
 - **Keyword**
-- **Reserved** (unexpected token)
+- **Reserved** (unexpected token?)
 - **Integer**
 - **Float**
