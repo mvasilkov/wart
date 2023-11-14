@@ -1,6 +1,6 @@
 [package]
 name = "wart_rs"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["Mark Vasilkov (https://github.com/mvasilkov)"]
 description = "WebAssembly Text Format (WAT) lexer from the wast crate, compiled to WebAssembly for use in JavaScript."
 repository = "https://github.com/mvasilkov/wart"

@@ -61,3 +61,19 @@ import('wart_rs/wart_rs.js').then(async ({ default: init, lexer }) => {
     })
 })
 ```
+
+## Tokens
+
+The lexer yields tokens of the following types:
+
+- **LineComment**
+- **BlockComment** (can be nested)
+- **Whitespace**
+- **LParen**
+- **RParen**
+- **String**
+- **Id** (start with `$`)
+- **Keyword**
+- **Reserved** (unexpected token)
+- **Integer**
+- **Float**
