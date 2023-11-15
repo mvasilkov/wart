@@ -8,6 +8,6 @@
   "license": "MIT",
   "dependencies": {
     "commander": "^11.1.0",
-    "wart_rs": "^0.0.1"
+    "wart_rs": "^0.0.3"
   }
 }
